@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberPath — Tu manager de aprendizaje en ciberseguridad</title>
+  <meta name="description" content="Programa que te enseña ciberseguridad desde cero: organiza tu ruta, te dice qué hacer cada día y monitoriza tu progreso." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-logo">🛡️</span>
+      <span class="brand-name">Cyber<b>Path</b></span>
+    </div>
+    <nav class="tabs" id="tabs" aria-label="Navegación principal"></nav>
+    <div class="top-actions">
+      <button id="themeBtn" class="icon-btn" title="Cambiar tema" aria-label="Cambiar tema">🌗</button>
+    </div>
+  </header>
+
+  <main id="view" class="view"></main>
+
+  <nav class="mobilebar" id="mobilebar" aria-label="Navegación"></nav>
+
+  <div id="modalRoot"></div>
+
+  <!-- Scripts clásicos (funciona abriendo el archivo directamente, sin servidor) -->
+  <script src="js/curriculum.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/scheduler.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
