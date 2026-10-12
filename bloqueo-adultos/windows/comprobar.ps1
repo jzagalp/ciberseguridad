@@ -1,4 +1,4 @@
-<#
+﻿<#
     comprobar.ps1  -  Comprueba el estado de cada capa del bloqueo.
 
     Lo puede ejecutar el usuario ESTANDAR (no necesita administrador).

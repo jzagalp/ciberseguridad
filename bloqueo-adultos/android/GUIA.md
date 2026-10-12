@@ -32,9 +32,10 @@ Vas a montar varias capas, una encima de otra. Ninguna es perfecta por sí sola,
 
 - El móvil cargado (más del 50 %) y desbloqueado.
 - Un PC con Windows y un **cable USB de datos** (algunos cables solo cargan).
-- Entre 1 y 2 horas sin prisas.
+- Entre 1 hora y media y 2 horas y media sin prisas (incluye comprar y configurar AppBlock y hacer las cápsulas).
 - Tus **cápsulas del tiempo preparadas** (ver [`../llaves/`](../llaves/)). Para el móvil necesitarás entre 1 y 3 llaves, y cada una es distinta.
 - Si vas a usar AppBlock (nivel 3), una forma de pago para su versión Premium.
+- **En Xiaomi, Redmi y POCO:** la **cuenta Xiaomi** iniciada en el móvil (y a veces una SIM con datos). La pide el permiso "Depuración USB (ajustes de seguridad)" del nivel 2; sin él, el script no puede poner el DNS ni teclear las llaves. Si no tienes cuenta Xiaomi, créala antes de empezar.
 
 **Haz esto primero (de verdad):**
 
@@ -55,7 +56,7 @@ Vas a montar varias capas, una encima de otra. Ninguna es perfecta por sí sola,
 | **Chrome con "DNS seguro" = CleanBrowsing** | Redundancia: Chrome sigue filtrando aunque quites el DNS privado | Sí (es solo redundancia) | No |
 | **Un solo navegador (Chrome)** y sin apps de riesgo | Quita navegadores con VPN o DNS propio y apps cuyo contenido no pasa por el filtro (X, Reddit, Telegram...) | Reinstalarlas es posible, pero AppBlock bloquea las apps nuevas o reinstaladas | No |
 | **Controles parentales de Android 17** (o PIN de Play en Android 16 o anterior) | Bloquea sitios explícitos en Chrome, filtra búsquedas, bloquea apps y limita por edad lo que se instala desde Play | No sin el PIN | **Sí** |
-| **AppBlock en modo estricto** | Filtro adulto propio, bloquea apps, impide su desinstalación y el acceso a ciertos ajustes | No hasta que acabe el temporizador (o con el PIN) | Temporizador o **llave** |
+| **AppBlock en modo estricto** | Filtro adulto propio, bloquea apps, impide su desinstalación y el acceso a ciertos ajustes | No hasta que acabe el temporizador (o con el PIN), salvo con su desbloqueo de emergencia (ver nivel 3) | Temporizador o **llave** |
 | **Router** (otra carpeta) | Filtra todo lo que pasa por la wifi de casa | Ver [`../router/`](../router/) | Sí |
 
 ---
@@ -68,11 +69,12 @@ El orden importa: algunas capas cierran la puerta a cambios posteriores. Ve marc
 - [ ] **1.** Nivel 1 en el móvil: DNS privado (1.1), Chrome (1.2), SafeSearch y YouTube (1.3), quitar apps de Google Play (1.4), quitar espacios extra (1.5).
 - [ ] **2.** Nivel 2 en el PC: activar la depuración USB (2.2) y ejecutar `EJECUTAR-movil.bat`, **opción 1** (2.4).
 - [ ] **3.** Instalar y preparar AppBlock (nivel 3, pasos 1 a 4), **sin** activar todavía el modo estricto. Va antes que el paso 4 por si los Controles parentales te pidieran después el PIN para instalar o comprar apps.
-- [ ] **4.** Controles parentales de Android 17 (1.6) **o** PIN de Google Play (1.7), metiendo el PIN con la **opción 2** del script (2.5).
+- [ ] **4.** Controles parentales de Android 17 (1.6) **o** PIN de Google Play (1.7), metiendo el PIN con la **opción 2** del script (2.5). **No pulses Intro al final del script hasta haber dejado configurado todo** (filtros, edad de Play...): mientras no termine, puede volver a teclear el PIN si el móvil te lo pide otra vez (opción T). Después lo olvida y solo lo recuperarás al abrir la cápsula.
 - [ ] **5.** **Opción 3** del script (Comprobar): confirma que solo queda Chrome y que no hay espacios extra.
 - [ ] **6.** Cerrar, según la variante de AppBlock que elijas (nivel 3, paso 5):
    - **Variante A (temporizador, recomendada):** primero la **opción 4** del script (apagar la depuración USB, 2.6); en Samsung, vuelve a activar el Bloqueador automático; y por último activa el modo estricto de AppBlock.
    - **Variante B (PIN con llave):** activa el modo estricto de AppBlock metiendo el PIN con la **opción 2** del script y, justo después, la **opción 4**.
+   - **Sin AppBlock:** solo la **opción 4** y, en Samsung, vuelve a activar el Bloqueador automático. Ten en cuenta que, sin AppBlock, el DNS privado se puede quitar desde Ajustes.
 - [ ] **7.** [Lista de verificación final](#prueba-que-funciona-lista-de-verificación-final).
 
 ---
@@ -184,10 +186,12 @@ Es la capa gratuita más sólida que trae Android. **No necesita cuenta de Googl
 3. Empieza la configuración. Cuando te pida **crear un PIN**, usa la **opción 2** del script > "PIN de Controles parentales (10 dígitos)" y sigue sus instrucciones.
 4. Si te ofrece una **cuenta de recuperación**, **no la añadas** (elige omitir): con tu propia cuenta podrías quitar el PIN cuando quisieras.
 5. Activa:
-   - En los **filtros de contenido web**: **"Bloquear sitios explícitos"** y **"Filtrar resultados de búsqueda explícitos"**.
+   - En **Filtros de contenido web**: **"Bloquear sitios explícitos"** y **"Filtrar resultados de la búsqueda explícitos"** (necesita una versión reciente de "Android System WebView": si no aparece, actualízala desde Play Store).
    - El **filtro de Google Play** por edad: **PEGI 12** (más estricto) o PEGI 16 si con 12 se te bloquea alguna app que necesitas. Ojo: casi todos los navegadores y VPN son aptos para todas las edades, así que este filtro **no** impide instalarlos; eso lo hace AppBlock.
    - El **bloqueo de apps**: cualquier navegador o app de riesgo que no hayas podido quitar.
 6. Sal y vuelve a entrar en Controles parentales: debe pedirte el PIN. El script te ayuda a comprobarlo.
+
+Haz los puntos 4 y 5 **antes de terminar la opción 2 del script**: si al guardar algún ajuste te vuelve a pedir el PIN, escribe **T** en el script para que lo teclee otra vez.
 
 Ten en cuenta que "Bloquear sitios explícitos" hace que Chrome envíe las direcciones que visitas a Google para clasificarlas.
 
@@ -197,7 +201,8 @@ Si no tienes los Controles parentales de 1.6, pon al menos el PIN de Google Play
 
 1. Abre **Play Store** > foto de perfil > **Ajustes** > **Familia** > **Controles parentales** (en algunas versiones: "Restricciones de contenido" > "Ir a Controles parentales").
 2. Actívalos. Cuando te pida **crear un PIN**, usa la **opción 2** del script > "PIN de Google Play (4 dígitos)".
-3. **Aplicaciones y juegos**: elige **PEGI 12** (más estricto) o PEGI 16.
+3. **Aplicaciones y juegos**: elige **PEGI 12** (más estricto) o PEGI 16. Si te pide el PIN, escribe **T** en el script para que lo teclee.
+4. **La prueba del script (paso 3):** Play no pide el PIN al volver a entrar, sino al intentar cambiar algo. Toca **Aplicaciones y juegos** como si fueras a cambiar la edad (**no toques el interruptor principal**: con el PIN se apagarían los controles), deja que el script teclee el PIN, deja la misma edad y vuelve atrás. Si los apagas sin querer, actívalos otra vez y usa la opción **T** del script para crear el PIN con la misma llave.
 
 Su punto débil (lo dice Google): **borrar los datos de la app Play Store quita los controles y el PIN**. Además, no oculta apps en las búsquedas y solo tiene 4 dígitos. Lo cubre AppBlock (nivel 3), que impide entrar en esos ajustes.
 
@@ -266,7 +271,7 @@ Lo que **no** hace: no da permisos especiales a ninguna app, no borra tus datos 
    - **D (desactivar):** se oculta. Es más fácil de revertir (y de saltarse): desde Ajustes > Aplicaciones > Activar.
    - **N (no tocar).**
 4. Si una app de la lista es **tu app bloqueadora** o una VPN que necesitas para trabajar, responde **N**. (El script ya excluye AppBlock y la app de CleanBrowsing, y las apps de VPN te las pregunta una a una aunque elijas "quitar todas".)
-5. Si el script dice que no puede escribir el registro, mueve la carpeta del kit a un sitio tuyo (por ejemplo, Documentos): sin registro no cambia nada, para que siempre se pueda deshacer.
+5. Si el script dice que no puede escribir el registro, mueve la carpeta del kit, descomprimida, a `C:\KitBloqueo`: sin registro no cambia nada, para que siempre se pueda deshacer.
 
 ### 2.5 Opción 2: meter una llave sin verla
 
@@ -282,10 +287,10 @@ Antes de empezar, en el PC:
 Los pasos (el script te guía en cada uno):
 
 1. Elige qué llave es: PIN de Controles parentales (10 dígitos), PIN de Play (4 dígitos), PIN de otra longitud o contraseña de letras y números (16 caracteres).
-2. **Paso 1, cápsula:** la llave está en el portapapeles. Abre tu cápsula, pega con **Ctrl+V**, programa la fecha y guarda. Hazlo sin pararte a leerla. Escribe `LISTO`. Te ofrecerá una **segunda cápsula** (muy recomendable para el PIN de Controles parentales). Después vacía el portapapeles.
-3. **Paso 2, móvil:** abre en el móvil la pantalla donde se crea el PIN y toca el campo. Pulsa Intro en el PC: el script borra lo que hubiera en el campo y teclea la llave. Comprueba que salen **tantos puntos como te dice**. Si salen **menos**, ese campo no admite tantos dígitos: responde C, sal **sin guardar** y vuelve a empezar con "PIN de otra longitud" más corto. Si te pide confirmarla, el script la teclea otra vez. Mientras tanto, el script oculta "Mostrar contraseñas" en el móvil para que no se vea ni el último carácter, y luego lo deja como estaba (si no puede, te avisa: entonces no mires la pantalla del móvil mientras teclea).
-4. **Paso 3, prueba:** sal de esa pantalla y vuelve a entrar. Cuando te pida el PIN, el script lo teclea y te pregunta si te ha dejado entrar (tienes que responder S o N). **No te saltes esta prueba.**
-5. **Al final**, el script te deja pedirle que teclee **la misma llave** otra vez (opción T). Sirve, por ejemplo, si al probar el PIN de AppBlock se desactivó el modo estricto y tienes que volver a activarlo con esa misma llave. Cuando pulses Intro, el script la olvida para siempre.
+2. **Paso 1, cápsula:** la llave está en el portapapeles. Haz la cápsula en Timevault como explica [`../llaves/GUIA.md`](../llaves/GUIA.md#si-la-llave-la-crea-otro-programa-del-kit): primero la fecha, después tu etiqueta y la llave con **Ctrl+V**, y guarda el texto cifrado en dos sitios. Hazlo sin pararte a leerla. Escribe `LISTO`. Te ofrecerá una **segunda cápsula** (muy recomendable para el PIN de Controles parentales, con la fecha una semana más tarde). Después vacía el portapapeles.
+3. **Paso 2, móvil:** abre en el móvil la pantalla donde se crea el PIN y toca el campo. Pulsa Intro en el PC: el script borra lo que hubiera en el campo y teclea la llave. Comprueba que salen **tantos puntos como te dice**. Si en vez de puntos salen números a la vista (por ejemplo, porque el cursor estaba en un buscador), no los mires: responde C, bórralos y vuelve a empezar con una llave nueva. Si salen **menos** puntos, ese campo no admite tantos dígitos: responde C, sal **sin guardar** y vuelve a empezar con "PIN de otra longitud" más corto. Si te pide confirmarla, el script la teclea otra vez. Mientras tanto, el script oculta "Mostrar contraseñas" en el móvil para que no se vea ni el último carácter, y luego lo deja como estaba (si no puede, te avisa: entonces no mires la pantalla del móvil mientras teclea).
+4. **Paso 3, prueba:** sal de esa pantalla y vuelve a entrar. Cuando te pida el PIN, el script lo teclea y te pregunta si te ha dejado entrar (tienes que responder S o N). **No te saltes esta prueba.** (En el PIN de Play, la prueba es distinta: mira el punto 4 de 1.7.)
+5. **Al final**, el script te deja pedirle que teclee **la misma llave** otra vez (opción T). Sirve, por ejemplo, si el móvil te vuelve a pedir el PIN para guardar un ajuste (filtros, edad de Play) o si al probar el PIN de AppBlock se desactivó el modo estricto y tienes que volver a activarlo. **Antes de pulsar Intro, deja configurado todo lo que protege esa llave**: cuando pulses Intro, el script la olvida para siempre y solo la recuperarás al abrir la cápsula.
 
 ### 2.6 Opción 4: terminar
 
@@ -317,19 +322,20 @@ No instales **dos apps que usen VPN** a la vez: Android solo permite una VPN act
 
 Los nombres exactos de los menús de AppBlock cambian con las versiones; entre paréntesis tienes cómo aparecen en su ayuda en inglés.
 
-1. Instala **AppBlock** (de MobileSoft) desde Google Play y hazte **Premium** (el filtro de contenido adulto parece ser solo de pago).
-2. Concede los permisos que pida, sobre todo **Accesibilidad** (Ajustes > Accesibilidad > "Aplicaciones descargadas", "Aplicaciones instaladas" o "Servicios descargados", según la marca > AppBlock > activar). Sin ese permiso no puede leer las direcciones de las webs.
+1. Instala **AppBlock** (de MobileSoft) desde Google Play y hazte **Premium** (el bloqueo de contenido para adultos y el de apps recién instaladas son de pago).
+2. Concede los permisos que pida, sobre todo **Accesibilidad** (Ajustes > Accesibilidad > "Aplicaciones descargadas", "Aplicaciones instaladas" o "Servicios descargados", según la marca > AppBlock > activar). Sin ese permiso no puede leer las direcciones de las webs. Si te pide más permisos (por ejemplo, **batería sin restricciones** o, en Xiaomi, **Inicio automático**), dáselos ahora: sin ellos el sistema puede cerrar AppBlock, y con el modo estricto ya no podrás entrar en Ajustes para darlos.
 3. Crea un bloqueo que esté **siempre activo** (todos los días, todo el día) con:
-   - el **filtro de contenido para adultos** activado;
+   - en sus **opciones extra** (Extra options), el **bloqueo de contenido para adultos** (Adult content blocking) activado. La primera vez, deja AppBlock abierto hasta que su base de datos cargue al 100 %;
+   - en esas mismas opciones extra, **añadir las apps recién instaladas** (Add newly installed apps): así se bloquea cualquier app que instales a partir de ahora;
    - los **navegadores** que no hayas podido quitar (todos menos Chrome);
    - las **apps de riesgo** y las tiendas alternativas que queden;
    - si no las usas, también **Galaxy Store** (Samsung) o **GetApps** (Xiaomi): desde ellas se pueden instalar navegadores sin pasar por los controles de Google Play.
 4. Prepara el **modo estricto** (Strict mode) con estas opciones:
    - **Impedir la desinstalación de AppBlock** (Disable AppBlock uninstalling): le pedirá ser "administrador del dispositivo"; acéptalo.
-   - **Bloquear los ajustes del dispositivo** (Block device settings).
-   - **Bloquear las apps reinstaladas** (Block reinstalled applications) y las apps nuevas, si lo ofrece.
+   - **Bloquear los ajustes del dispositivo** (Block device settings). Bloquea la app Ajustes durante todo el plazo. Según su ayuda, AppBlock tiene una opción para dejar accesibles algunos ajustes, como la wifi y el Bluetooth (Show Available Settings), que solo se puede cambiar con el modo estricto apagado. Si la activas, comprueba después que desde ahí no llegas a la pantalla de DNS privado.
+   - **Bloquear las apps reinstaladas** (Block reinstalled applications).
 5. Elige cómo se desbloquea y actívalo:
-   - **Variante A, temporizador (recomendada):** 30 días. No necesitas llave: el propio temporizador es la cápsula. Cuando acabe, lo renuevas.
+   - **Variante A, temporizador (recomendada):** 30 días. No necesitas llave: el propio temporizador es la cápsula. Cuando acabe, lo renuevas. Su punto débil es el desbloqueo de emergencia, rápido la primera vez (ver "Cosas que debes saber", más abajo).
      1. **Antes de activarlo**, haz la **opción 4** del script (2.6) y, en Samsung, vuelve a activar el Bloqueador automático: después puede que AppBlock no te deje entrar en Ajustes, y eso es justo lo que queremos.
      2. Activa el modo estricto con el temporizador.
    - **Variante B, PIN con llave:** guárdalo en una cápsula de 30 a 90 días.
@@ -340,8 +346,11 @@ Los nombres exactos de los menús de AppBlock cambian con las versiones; entre p
 Cosas que debes saber:
 
 - **No actives la "Protección avanzada"** de Android 17: retira el permiso de Accesibilidad a apps como AppBlock y la deja sin efecto. (Y si un día alguien la activa, esa es una forma de saltársela: AppBlock lo dificulta bloqueando los ajustes.)
-- AppBlock tiene un **"desbloqueo de emergencia"** a través de su soporte, que es deliberadamente lento y cada vez más difícil. Es tu válvula de seguridad si algo sale mal y, a la vez, un hueco.
+- AppBlock tiene un **"desbloqueo de emergencia"** (Emergency unblocking) que no se puede desactivar. Es tu válvula de seguridad si algo sale mal y, a la vez, un hueco, y **depende de la variante**:
+  - **Con temporizador (variante A)** se pide desde la propia app (Perfil > Ayuda > Contactar con soporte > Desbloqueo de emergencia; en su ayuda en inglés, Profile > Help > Contact support > Emergency unblocking). Según su ayuda, **la primera vez es un trámite corto** (unas preguntas en la app, sin esperar al soporte); las siguientes, cada vez más difícil (más espera y reescribir un texto largo).
+  - **Con PIN (variante B)** hay que escribir al soporte, que manda un código de un solo uso (dicen que responden en hasta 24 horas). Es más lento, así que pone más fricción.
 - En **modo seguro** de Android, AppBlock no funciona (el DNS privado sí).
+- **Antes de activar el modo estricto, instala y configura lo que vayas a necesitar ese mes** (apps del banco, del trabajo, de transporte...) y deja hechos los ajustes que preveas (wifi del trabajo, emparejar auriculares). Durante el plazo, las apps nuevas quedan bloqueadas y Ajustes también. Según AppBlock, algunas apps de banca o de pago pueden fallar con los ajustes bloqueados: compruébalas nada más activarlo y, si falla una imprescindible, usa el desbloqueo de emergencia (abajo) y vuelve a activarlo sin "Bloquear los ajustes del dispositivo".
 - Con los ajustes bloqueados **no podrás cambiar el DNS privado** hasta que acabe el bloqueo. Si un día CleanBrowsing fallara en todas las redes, el móvil se quedaría sin internet (las llamadas y los SMS siguen funcionando) hasta que acabe el temporizador o uses el desbloqueo de emergencia. Por eso conviene empezar con 30 días y no con plazos más largos.
 
 ---
@@ -391,7 +400,7 @@ Hazlo **en este orden**: si no, una capa vuelve a bloquear lo que quites con otr
    - Variante A: espera a que acabe el temporizador.
    - Variante B: abre AppBlock, desactiva el modo estricto con la llave.
    - Después ya puedes cambiar sus bloqueos o desinstalarla (si hace falta, quita antes su permiso de administrador: busca "administración del dispositivo" en Ajustes y desactiva AppBlock).
-2. **Controles parentales (Android 17):** Ajustes > Controles parentales > mete el PIN > **Eliminar PIN** (apaga todos los controles a la vez).
+2. **Controles parentales (Android 17):** Ajustes > Controles parentales > **Gestionar PIN de controles parentales** > mete el PIN > **Eliminar PIN** (apaga todos los controles a la vez; el nombre exacto puede variar un poco).
    **PIN de Play:** Play Store > Ajustes > Familia > Controles parentales > desactívalos con el PIN.
 3. **Lo que hizo el script:** activa otra vez la depuración USB (2.2), conecta el móvil y abre `EJECUTAR-movil.bat` > **opción 5 (Deshacer)**. También puedes lanzarlo así: `EJECUTAR-movil.bat -Deshacer`. Devuelve el DNS privado a como estaba antes y reinstala o reactiva las apps que se quitaron. Las apps que no se puedan recuperar así te las dirá: reinstálalas desde Google Play (o Galaxy Store / GetApps).
 4. **Sin PC o sin el registro:**
@@ -434,7 +443,7 @@ Nada de este kit deja el móvil inservible: en el peor caso, el restablecimiento
 | Borrar los datos de Play Store | Quita el PIN de Play | Controles parentales de Android 17; AppBlock |
 | Cambiar la fecha o la zona horaria | Puede alterar los temporizadores | AppBlock (ajustes bloqueados) |
 | Restablecer de fábrica | Lo borra todo, bloqueos incluidos | Nada lo impide, y está bien que sea así: es tu salida de emergencia. Cuesta mucho (pierdes datos y tiempo), y esa fricción es la protección |
-| Desbloqueo de emergencia del soporte de AppBlock | Quita el modo estricto tras una espera | Es lento a propósito; es tu válvula de seguridad |
+| Desbloqueo de emergencia de AppBlock | Quita el modo estricto. Con temporizador, la primera vez es un trámite corto desde la propia app; con PIN, hay que esperar a que el soporte mande un código (hasta 24 h) | Nada lo impide: es tu válvula de seguridad. Cada vez que lo usas es más difícil; la variante B (PIN) da más fricción |
 | Wifis que bloquean el DNS privado | Te quedas sin internet en esa red | Usa datos móviles; la app de pago de CleanBrowsing tiene un respaldo |
 | Volver a activar la depuración USB y usar "Deshacer" desde un PC | Revierte lo que hizo el script | AppBlock (bloquea los Ajustes, que es donde se activa); en Samsung, el Bloqueador automático |
 | Otro dispositivo (tablet, consola, el PC) | Este kit solo cubre el móvil | Router de casa ([`../router/`](../router/)) y la capa de Windows ([`../windows/`](../windows/)) |
@@ -449,7 +458,7 @@ Ninguna prueba requiere abrir webs para adultos. Hazlas con la wifi de casa **y*
 
 - [ ] Ajustes > DNS privado muestra `family-filter-dns.cleanbrowsing.org`.
 - [ ] En Chrome, abre `reddit.com`: **no debe cargar** (CleanBrowsing Family bloquea las webs de contenido mixto; verás un error tipo "No se puede acceder a este sitio").
-- [ ] En Chrome, abre `https://cleanbrowsing.org/dnsleaktest`: debe indicar que usas CleanBrowsing.
+- [ ] En Chrome, abre `https://cleanbrowsing.org/dnsleaktest` y pulsa **"Run Extended Test"** (tarda unos 20 segundos): debe indicar que usas CleanBrowsing. Si salen los servidores de tu operador, el filtro no está actuando en Chrome.
 - [ ] En Chrome: Configuración > Privacidad y seguridad > Usar DNS seguro = "CleanBrowsing (Family Filter)".
 - [ ] En Google, intenta desactivar SafeSearch: no debería quedarse desactivado.
 - [ ] En YouTube, el modo restringido debería aparecer activado y, normalmente, sin dejarte quitarlo.
@@ -524,7 +533,7 @@ Fuentes principales:
 - Cloudflare: [1.1.1.1 for Families en Android](https://developers.cloudflare.com/1.1.1.1/setup/android/).
 - Google: [DNS privado en Pixel](https://support.google.com/pixelphone/answer/2819583), [Controles parentales de Android](https://support.google.com/android/answer/16766047?hl=es), [controles parentales de Google Play](https://support.google.com/googleplay/answer/1075738?hl=es), [SafeSearch](https://support.google.com/websearch/answer/186669), [modo restringido de YouTube](https://support.google.com/youtube/answer/174084?hl=es), [Family Link y edad de consentimiento](https://support.google.com/families/answer/9055704).
 - Android para desarrolladores: [adb](https://developer.android.com/tools/adb), [platform-tools](https://developer.android.com/tools/releases/platform-tools), [UserManager](https://developer.android.com/reference/android/os/UserManager).
-- AppBlock: [modo estricto](https://appblock.app/help/android/strict-mode-all/), [modo seguro](https://appblock.app/appblock-does-not-work-after-entering-safe-mode-2/), [Protección avanzada](https://appblock.app/androids-new-advanced-protection-affects-appblock-from-blocking/).
+- AppBlock: [modo estricto](https://appblock.app/help/android/strict-mode-all/), [desbloqueo de emergencia](https://appblock.app/help/android/strict-mode-and-unblocking/), [apps recién instaladas](https://appblock.app/how-to-block-newly-installed-apps-2/), [contenido para adultos](https://appblock.app/how-to-block-adult-content/), [modo seguro](https://appblock.app/appblock-does-not-work-after-entering-safe-mode-2/), [Protección avanzada](https://appblock.app/androids-new-advanced-protection-affects-appblock-from-blocking/).
 - Samsung: [Bloqueador automático](https://www.samsung.com/us/support/answer/ANS10003636/).
 - Microsoft: [Enlace Móvil: copiar y pegar entre dispositivos](https://support.microsoft.com/en-us/windows/apps/phonelink/seamlessly-transfer-content-between-your-devices).
 - Código fuente de Chromium (lista de proveedores de DNS seguro) y de Android (comandos `settings`, `pm`, `input`).

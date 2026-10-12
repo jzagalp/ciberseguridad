@@ -1,4 +1,4 @@
-#requires -Version 5.1
+﻿#requires -Version 5.1
 <#
 .SYNOPSIS
     Kit para bloquear contenido adulto - capa Android.
@@ -272,7 +272,7 @@ function Registro-Escribible {
     } catch {
         Mostrar-Error ('No puedo escribir el registro en ' + $script:Registro)
         Mostrar-Info 'Sin registro no se podría deshacer después, así que no cambio nada.'
-        Mostrar-Info 'Copia la carpeta del kit a un sitio tuyo (por ejemplo, Documentos), descomprimida,'
+        Mostrar-Info 'Copia la carpeta del kit, descomprimida, a C:\KitBloqueo (o a otra carpeta tuya)'
         Mostrar-Info 'y vuelve a abrir EJECUTAR-movil.bat desde allí.'
         return $false
     }
@@ -1144,8 +1144,10 @@ function Invoke-Llave {
         Mostrar-Titulo 'Paso 1 de 3: guarda la llave en tu cápsula del tiempo'
         Copiar-Llave $secreto
         Mostrar-Ok 'La llave está en el portapapeles. NO la pegues en esta ventana.'
-        Mostrar-Info 'Abre tu cápsula (correo programado, caja con temporizador...: carpeta llaves/),'
-        Mostrar-Info 'pega con Ctrl+V, programa la fecha de apertura y guarda. Hazlo sin pararte a leerla.'
+        Mostrar-Info 'Ve a Timevault como explica llaves/GUIA.md ("Si la llave la crea otro programa del kit"):'
+        Mostrar-Info 'elige primero la fecha, escribe tú la etiqueta, pega la llave debajo con Ctrl+V, guarda'
+        Mostrar-Info 'el texto CIFRADO en dos sitios (nunca la llave sin cifrar) y comprueba la fecha en Decrypt.'
+        Mostrar-Info 'No te pares a leerla.'
         Mostrar-Info 'No cierres esta ventana con la X: si tuvieras que hacerlo, copia antes cualquier'
         Mostrar-Info 'palabra para que la llave no se quede en el portapapeles.'
         if (-not (Esperar-Palabra 'Cuando esté guardada y programada, escribe LISTO (o CANCELAR)' 'LISTO')) {
@@ -1155,7 +1157,8 @@ function Invoke-Llave {
         $segunda = Preguntar-SiNo '¿La guardas también en una segunda cápsula? (muy recomendable)' ($op -eq '1')
         if ($segunda) {
             Copiar-Llave $secreto
-            Mostrar-Ok 'Copiada otra vez. Pégala en la segunda cápsula y prográmala.'
+            Mostrar-Ok 'Copiada otra vez. En Timevault, borra el cuadro Plaintext (Ctrl+A y Supr), pon una fecha'
+            Mostrar-Info 'una semana más tarde, escribe la etiqueta, pega la llave y guarda el cifrado en otros dos sitios.'
             if (-not (Esperar-Palabra 'Cuando esté guardada, escribe LISTO (o CANCELAR)' 'LISTO')) {
                 Mostrar-Info 'Cancelado. Si programaste alguna cápsula, bórrala sin abrirla (o déjala: esa llave no se usará).'
                 return
@@ -1216,6 +1219,9 @@ function Invoke-Llave {
         }
 
         # Más tecleos con la misma llave (por ejemplo, para volver a activar algo que la prueba desactivó).
+        Mostrar-Aviso 'Antes de terminar, deja configurado en el móvil todo lo que protege esta llave (filtros,'
+        Mostrar-Info  'edad de Play, modo estricto...). Si al guardar te vuelve a pedir el PIN, escribe T aquí.'
+        Mostrar-Info  'Al pulsar Intro olvido la llave: solo la recuperarás cuando se abra la cápsula.'
         while ($true) {
             $r = Leer-Respuesta 'Escribe T si necesitas que vuelva a teclear esta misma llave; pulsa Intro para terminar'
             if ($r -notmatch '^[tT]') { break }

@@ -1,4 +1,4 @@
-<#
+﻿<#
     bloquear-pc.ps1  -  Kit para bloquear contenido adulto (capa Windows)
 
     Aplica, en este orden, varias capas que se refuerzan entre si:

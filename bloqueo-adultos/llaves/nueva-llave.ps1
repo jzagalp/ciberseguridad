@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Kit para bloquear contenido adulto - generador de llaves.
 
@@ -519,9 +519,10 @@ function Paso-Capsula {
     Copiar-YAvisar $TextoCapsula 'el texto para la cápsula (una etiqueta y la llave)'
     Mostrar-Info ''
     Mostrar-Info '  1. Ve a tu cápsula (Timevault: GUIA.md) con la página alejada al 25 % (Ctrl y -).'
-    Mostrar-Info '  2. Pega con Ctrl+V en el cuadro de texto. No te pares a leerlo.'
-    Mostrar-Info ('  3. Elige la fecha de apertura. Por ejemplo: 30 días = {0} | 60 días = {1} | 90 días = {2}' -f (Fecha-Dentro 30), (Fecha-Dentro 60), (Fecha-Dentro 90))
-    Mostrar-Info '  4. Cifra y guarda el texto CIFRADO en dos sitios: un correo a ti y un archivo .txt.'
+    Mostrar-Info ('  2. Pestaña Text: elige PRIMERO la fecha (Decryption time). 30 días = {0} | 60 = {1} | 90 = {2}' -f (Fecha-Dentro 30), (Fecha-Dentro 60), (Fecha-Dentro 90))
+    Mostrar-Info '  3. Pega con Ctrl+V en el cuadro Plaintext. No te pares a leerlo.'
+    Mostrar-Info '  4. No hay botón de cifrar: el cifrado sale solo en el cuadro Ciphertext. Guárdalo en dos'
+    Mostrar-Info '     sitios: un correo a ti y un archivo .txt. Luego compruébalo en la pestaña Decrypt (GUIA.md).'
     Mostrar-Info '     El texto cifrado no es secreto: cópialo sin miedo. Luego vuelvo a copiar la llave.'
     Mostrar-Aviso 'No pegues nada en esta ventana, y no pulses Ctrl+C aquí: cerraría el programa.'
     Mostrar-Info ''
@@ -537,7 +538,7 @@ function Paso-Capsula {
             Mostrar-Aviso 'Ojo: el portapapeles todavía tiene el texto SIN cifrar (con la llave), no el cifrado.'
             Mostrar-Info '  Si lo has pegado en el correo, en el archivo o en FutureMe, bórralo de ahí sin leerlo'
             Mostrar-Info '  (mira también Borradores y Enviados). Después vuelve a Timevault, copia el resultado'
-            Mostrar-Info '  CIFRADO (el cuadro que empieza por -----BEGIN AGE...) y pégalo en tus dos sitios.'
+            Mostrar-Info '  CIFRADO (el cuadro Ciphertext, que empieza por -----BEGIN AGE...) y pégalo en tus dos sitios.'
             Mostrar-Info '  Si la llave ha llegado a enviarse o a verse, escribe X y empieza de nuevo con otra llave.'
             $op2 = Leer-Opcion '[Intro] Ya lo he corregido | S = seguir (no lo pegué en ningún sitio) | X = cancelar' @('', 'S', 'X')
             if ($op2 -eq 'X') { return 'X' }

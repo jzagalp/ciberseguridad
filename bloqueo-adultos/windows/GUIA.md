@@ -7,7 +7,7 @@ antes de hacerlo.
 La idea es sencilla: montamos **varias capas** que se refuerzan entre sí y, al final,
 tu cuenta deja de ser administradora del equipo. La contraseña del nuevo administrador
 (la **llave**) la crea el programa, **tú no la ves** y queda guardada en una "cápsula
-del tiempo" (carpeta `llaves/` del kit). Así no puedes deshacerlo en un impulso. Cuando
+del tiempo" (se explica en la carpeta `llaves/` del kit). Así no puedes deshacerlo en un impulso. Cuando
 pase el tiempo que elijas (30 a 90 días), recuperas la llave y puedes revisarlo o
 renovarlo.
 
@@ -37,6 +37,14 @@ renovarlo.
      **proxy** (todas las de VPN/proxy);
    - se desactivan el DNS cifrado del navegador, el Tor y la VPN de Brave y la VPN
      integrada de Firefox.
+   - **Ojo con Edge:** según Microsoft, desde Edge 116 algunas directivas pueden no
+     aplicarse a un perfil con la sesión iniciada con una **cuenta Microsoft**. De las del
+     kit, las afectadas son el bloqueo de extensiones de proxy/VPN, el del modo
+     desarrollador y el YouTube restringido (este último lo sigue forzando el DNS). Lo
+     compruebas en el paso 9. La VPN integrada de Edge ("Secure Network") no tiene
+     directiva para apagarla; según Microsoft no está disponible en navegadores
+     "administrados" y, según cuentan usuarios, Edge pasa a serlo al recibir directivas
+     como estas (compruébalo en Configuración > Privacidad de Edge).
 
 3. **Fichero `hosts`.** Una lista local de unos **76.000 dominios** para adultos que el
    ordenador mira **antes** que cualquier DNS (funciona incluso con VPN o con el DNS
@@ -71,8 +79,8 @@ renovarlo.
 - [ ] **Apunta tu clave de recuperación de BitLocker** si tu equipo tiene el disco
       cifrado. Suele estar en tu cuenta de Microsoft
       (`https://account.microsoft.com/devices/recoverykey`). **No** vamos a tocar
-      BitLocker, pero esa clave es la que te pediría Windows si algún día tuvieras que
-      restablecer el equipo.
+      BitLocker, pero esa clave es la que te podría pedir Windows si algún día tuvieras
+      que restablecer el equipo.
 - [ ] **Prepara tu cápsula del tiempo** siguiendo la guía de `llaves/`: haz el
       **ensayo** de Timevault y el apartado **"Antes de crear la primera llave"**
       (historial del portapapeles, Enlace Móvil, que el navegador no guarde contraseñas).
@@ -80,14 +88,26 @@ renovarlo.
       no la volverás a ver.
 - [ ] **Si vas a usar Cold Turkey Pro** (recomendado, ver más abajo), **instálalo y
       configúralo ahora**, mientras tu cuenta todavía es administradora.
+- [ ] **Si vas a configurar el móvil con su script** (guía `android/`, nivel 2), hazlo
+      **antes** que esta capa: el controlador USB del móvil puede necesitar permisos de
+      administrador.
 - [ ] **Desinstala Opera / Opera GX** si lo tienes: no obedece las directivas y trae una
       VPN propia. En Windows 11: Configuración > Aplicaciones > Aplicaciones instaladas >
       busca Opera > botón **⋯** > **Desinstalar**. En Windows 10: Configuración >
       Aplicaciones > Aplicaciones y características > Opera > **Desinstalar**.
+- [ ] **Instala ahora lo que vayas a necesitar** en las próximas semanas y que pida
+      administrador (impresora, programas del trabajo o de clase...): después no podrás
+      sin la llave.
+- [ ] **Si usas este PC con la VPN de tu trabajo**, es probable que deje de funcionar: el
+      cortafuegos del kit solo deja preguntar al DNS del filtro, y esas VPN suelen usar su
+      propio DNS. No apliques el kit a un ordenador de empresa.
 - [ ] **Cierra los navegadores** antes de empezar, para que lean las directivas nuevas
-      al volver a abrirlos.
-- [ ] **Descomprime el kit entero** (si lo bajaste en ZIP) en una carpeta fácil, por
-      ejemplo en Documentos. No lo ejecutes desde dentro del ZIP.
+      al volver a abrirlos. Cuando el programa llegue al paso de cuentas, vuelve a abrir
+      el navegador con Timevault para hacer la cápsula.
+- [ ] **Descomprime el kit entero** (si lo bajaste en ZIP) en `C:\KitBloqueo`. Evita
+      Documentos y el Escritorio: si están en OneDrive y un archivo queda "solo en la
+      nube", el programa no podrá leerlo al renovar o deshacer con `GuardianBloqueo`.
+      No lo ejecutes desde dentro del ZIP.
 
 Si tu equipo tiene **Windows 10**: el kit funciona, pero Windows 10 ya no recibe
 actualizaciones de seguridad normales. Si puedes, pasa a Windows 11.
@@ -125,10 +145,11 @@ Cosas que **no** vamos a hacer, a propósito, para no dejarte sin ordenador:
      la ventana negra y pulsa Intro.
    - El programa crea la llave y la copia al portapapeles **sin mostrarla**.
    - **Guárdala en tu cápsula** tal como explica la guía de `llaves/`, apartado
-     **"Si la llave la crea otro programa del kit"**: escribe tú la etiqueta (por ejemplo
-     `Windows - administrador GuardianBloqueo`), pega la llave debajo con **Ctrl+V**,
-     elige la fecha, cifra y guarda el texto cifrado en dos sitios. No la pegues en
-     ningún otro lado ni la mires.
+     **"Si la llave la crea otro programa del kit"**: en Timevault elige **primero la
+     fecha**, escribe tú la etiqueta (por ejemplo `Windows - administrador GuardianBloqueo`),
+     pega la llave debajo con **Ctrl+V** (el cifrado sale solo), guarda el texto cifrado
+     en dos sitios y comprueba la fecha en la pestaña **Decrypt**. No la pegues en ningún
+     otro lado ni la mires.
    - Vuelve a la ventana negra y escribe `PEGADA`.
      - Si el portapapeles se ha perdido antes de pegarla, escribe `COPIAR` y la vuelve
        a copiar.
@@ -144,6 +165,8 @@ Cosas que **no** vamos a hacer, a propósito, para no dejarte sin ordenador:
    repite. Si alguna da **FALLO**, reinicia y repite; si sigue, mira la tabla de huecos.
 9. Comprueba también en el navegador: escribe `chrome://policy` en Chrome (o
    `edge://policy` en Edge, `about:policies` en Firefox) y verás las directivas del kit.
+   En Edge, fíjate en el estado de `ExtensionSettings`: si no sale como correcto (por
+   ejemplo, "Ignorada" o con un aviso por la cuenta Microsoft), mira la tabla de huecos.
 
 > Puedes volver a ejecutar `EJECUTAR-bloqueo.bat` las veces que quieras: no duplica nada.
 
@@ -180,16 +203,21 @@ portables) y de proxies/VPN dentro del navegador, lo más eficaz es **Cold Turke
 
 - **Gratis** ya bloquea webs con temporizador (no se puede cancelar a mitad).
 - **Pro** (pago único para todos tus ordenadores) añade: bloqueo de **aplicaciones**,
-  contraseña de la app y bloqueos "locked" que no se pueden desactivar mientras están
-  activos; además intenta bloquear los navegadores no compatibles (como Tor Browser).
+  horarios, contraseña de la app y todas las opciones de bloqueo "locked" que no se
+  pueden desactivar mientras están activas; según sus notas de versión, también tiene
+  opciones contra navegadores no compatibles (como Tor Browser).
 - **Instálalo antes del paso de cuentas** (necesita administrador para instalarse).
   Como contraseña de Cold Turkey usa una **llave distinta**, creada con
   `EJECUTAR-llave.bat` de la carpeta `llaves/` (opción 3), en su propia cápsula. Como
   después tu cuenta será estándar, no podrás desinstalarlo: doble candado.
 - Precio: compruébalo en `https://getcoldturkey.com/pricing` (las fuentes que
   consultamos daban entre 39 y 45 USD de pago único; confírmalo antes de pagar).
-- Activa el ajuste que **bloquea el instalador** y el que impide las ventanas de Tor y el
-  modo invitado. Guía oficial: `https://getcoldturkey.com/support/user-guide/`.
+- En sus ajustes, activa las opciones que impiden **desinstalarlo o saltárselo** y las
+  que bloquean las ventanas de incógnito, invitado y Tor (los nombres cambian entre
+  versiones; no hemos podido confirmarlos). Guía oficial:
+  `https://getcoldturkey.com/support/user-guide/`.
+- Si bloqueas aplicaciones, **no bloquees** `powershell.exe`, `cmd.exe` ni `adb.exe`:
+  los programas del kit (comprobación, llaves y móvil) los necesitan.
 - **No uses "Frozen Turkey"** (te deja fuera del ordenador entero): demasiado riesgo.
 
 Alternativa **gratis** si no quieres pagar: **Microsoft Family Safety**. Puede filtrar
@@ -268,9 +296,10 @@ programas y ajustes (por eso la copia de seguridad del principio):
 
 - En la pantalla de inicio de sesión, pulsa el botón de apagado (abajo a la derecha),
   mantén pulsada **Mayús** y elige **Reiniciar**. Después: **Solucionar problemas** >
-  **Restablecer este PC** > **Quitar todo**. Si tu disco está
-  cifrado, te pedirá la clave de recuperación de BitLocker.
-- Si eso también pide un administrador, reinstala Windows desde un USB de instalación
+  **Restablecer este PC** > **Quitar todo**. Según Microsoft, por defecto "Quitar todo"
+  no pide administrador ("Mantener mis archivos" sí). Si tu disco está cifrado, puede
+  que te pida la clave de recuperación de BitLocker: tenla a mano.
+- Si aun así te pide un administrador o no arranca, reinstala Windows desde un USB de instalación
   (en `https://www.microsoft.com/software-download/windows11` está la herramienta para
   crearlo desde otro ordenador).
 
@@ -290,7 +319,8 @@ Esto es lo que esta capa de Windows **no** cierra del todo, y qué lo cubre:
 | **Apps con su propio DNS cifrado** | Una app puede llevar su propio DNS cifrado hacia un servidor que no está en la lista del cortafuegos. | CleanBrowsing bloquea los nombres de los servicios de DNS cifrado conocidos. Para apps concretas, Cold Turkey Pro. |
 | **Apps de la Microsoft Store y de mensajería** (Telegram, Discord, X...) | Una cuenta estándar puede instalar apps de la Store, y algunas muestran contenido que no pasa por el filtro web. | No lo cubre Windows. Si es un problema, bloquéalas con Cold Turkey Pro. |
 | **Reiniciar en modo seguro** | Tu cuenta sigue siendo estándar y el DNS/hosts/directivas se mantienen, pero Cold Turkey podría no arrancar. Que el cortafuegos funcione en "modo seguro con funciones de red" no está garantizado. | Cuenta estándar + DNS + router. |
-| **Reinstalar Windows o arrancar desde un USB** | Windows no protege nada ante una reinstalación limpia. | En casa, el **router** (otra capa del kit). Fuera de casa, nada. |
+| **Reinstalar Windows, arrancar desde un USB o "Restablecer este PC > Quitar todo"** | Windows no protege nada ante una reinstalación limpia. Y, según Microsoft, "Quitar todo" desde el menú de recuperación (Mayús + Reiniciar) **no pide administrador** por defecto. Es tu salida de emergencia, pero borra todos tus programas y archivos del equipo. | En casa, el **router** (otra capa del kit). Fuera de casa, nada. Lo que más frena es el coste: tendrías que reinstalarlo todo. |
+| **Edge con la sesión de tu cuenta Microsoft** | Según Microsoft, algunas directivas pueden no aplicarse a ese perfil: el bloqueo de extensiones de proxy/VPN, el del modo desarrollador y el YouTube restringido de la directiva. | Compruébalo en `edge://policy` (paso 9). Si salen ignoradas: usa Chrome o Edge sin iniciar sesión con la cuenta Microsoft. El DNS sigue forzando YouTube restringido y bloqueando webs de VPN/proxy; Cold Turkey Pro mira la URL en el navegador. |
 | **Antivirus de terceros con cortafuegos** (McAfee, Norton) | Desactiva el Cortafuegos de Windows: **las reglas del cortafuegos no se aplican**. | Revisa el aviso del programa y de la comprobación. Las demás capas (DNS, hosts, directivas, cuenta) siguen funcionando. |
 | **Router del operador que intercepta el DNS** (por ejemplo el "DNS Seguro" de algunos routers de Vodafone y Lowi) | El PC pregunta a CleanBrowsing, pero contesta el router del operador sin filtro. La comprobación lo detecta: sale **FALLO** en "CleanBrowsing bloquea el dominio de prueba". | Desactivar esa función en el router (guía `router/`). En Windows 11, la opción `-DohWindows11` cifra el DNS y el router ya no puede contestar en su lugar. Mientras tanto, el `hosts` y las directivas siguen funcionando. |
 | **Wifi pública con "portal cautivo"** (hoteles, trenes) o redes que bloquean DNS externos | Con el DNS fijo y el puerto 53 bloqueado, puede que la página de acceso no cargue o que no haya internet. | Usa el punto de acceso de tu móvil, que ya va filtrado. |

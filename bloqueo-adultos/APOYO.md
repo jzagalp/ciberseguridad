@@ -60,13 +60,13 @@ Sin castigarte. Un tropiezo no borra lo que has avanzado.
 - **Sanidad pública:** pide cita con tu médico o médica de familia y solicita derivación a **Salud Mental** (psicología clínica). Puedes decirlo así: "Tengo un consumo de pornografía que no consigo controlar y me está afectando". La clasificación de enfermedades de la OMS (CIE-11) recoge el "trastorno de conducta sexual compulsiva" (código 6C72), así que es un motivo de consulta reconocido. Suele haber lista de espera: mientras tanto, el kit y los grupos te sostienen.
 - **Psicología privada:** busca en el directorio del colegio oficial de la psicología de tu comunidad autónoma. El Consejo General de la Psicología de España está en [cop.es](https://www.cop.es). Pide que tenga la habilitación de **Psicología General Sanitaria** o sea **especialista en Psicología Clínica**, y pregunta si tiene experiencia en conductas compulsivas.
 
-**Grupos de apoyo entre iguales** (gratuitos y anónimos, muchos con reuniones online en español):
+**Grupos de apoyo entre iguales** (gratuitos y anónimos; hay reuniones presenciales y online, algunas en español):
 
 - **Sexólicos Anónimos (SA):** [sa.org](https://www.sa.org). Su definición de "sobriedad" es estricta.
-- **Adictos al Sexo y al Amor Anónimos (SLAA):** [slaafws.org](https://slaafws.org).
+- **Adictos al Sexo y al Amor Anónimos (SLAA):** [slaafws.org](https://slaafws.org). En España tiene grupos presenciales y virtuales: busca "SLAA España".
 - **Adictos al Sexo Anónimos (SAA):** [saa-recovery.org](https://saa-recovery.org).
 
-En SLAA y SAA cada persona define sus propios límites. Si un grupo no encaja contigo, prueba otro.
+Las webs están sobre todo en inglés, pero cada una tiene un buscador de reuniones: busca las de España o las online en español. En SLAA y SAA cada persona define sus propios límites. Si un grupo no encaja contigo, prueba otro.
 
 ---
 

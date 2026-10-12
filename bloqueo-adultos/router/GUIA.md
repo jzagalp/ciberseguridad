@@ -199,9 +199,9 @@ Cuando el paso 4 salga bien y hayas hecho el paso 5, cambia la contraseña de ad
 **Lo bueno del router:** es la única capa en la que perder la llave no tiene consecuencias graves. Con el botón de reset vuelve a valer la contraseña de la pegatina (lo malo es que tendrás que volver a configurarlo).
 
 1. Prepara la cápsula del tiempo como explica [`../llaves/GUIA.md`](../llaves/GUIA.md).
-2. En el router, busca la página de la contraseña. Suele estar en **"Administración"**, **"Sistema"**, **"Mantenimiento"**, **"Gestión"** o **"Cambiar contraseña"**.
+2. En el router, busca la página de la contraseña. Suele estar en **"Administración"**, **"Sistema"**, **"Mantenimiento"**, **"Gestión"** o **"Cambiar contraseña"**. Aleja también esta página (Ctrl y "-"): algunos routers enseñan la contraseña en claro al escribirla. Si mientras haces la cápsula el router te saca de la sesión, vuelve a entrar con la contraseña de la pegatina: todavía vale.
 3. Haz doble clic en `../llaves/EJECUTAR-llave.bat` y elige **"1) Router: contraseña de administración"**. Sigue sus tres pasos:
-   1. Pega el texto en la cápsula, cífralo y guarda el texto cifrado en tus dos sitios.
+   1. Haz la cápsula en Timevault (primero la fecha y después pega el texto; el cifrado sale solo), guarda el texto cifrado en tus dos sitios y comprueba la fecha en la pestaña Decrypt (puntos 7 a 13 del paso a paso de la guía de llaves).
    2. En el router, escribe la **contraseña actual** (la de la pegatina) y pega la llave en **"Contraseña nueva"** y en **"Repetir"** o **"Confirmar"**. Guarda. Si el navegador ofrece guardarla: **"Nunca"**.
    3. Sal del router y vuelve a entrar pegando la llave para comprobar que abre.
 4. Si el router no acepta la llave (algunos limitan la longitud o piden símbolos), escribe **F** en el programa y elige 16 caracteres o "con un símbolo". La cápsula anterior ya no sirve: bórrala.
@@ -246,12 +246,12 @@ Routers H500-s, Wi-Fi 6 Station y otros. La dirección suele ser `192.168.0.1`.
 
 Qué hacer:
 
-1. Entra en el router y busca **"DNS & DDNS"** (o algo parecido). Si ves **"DNS Seguro"**, **desactívalo** y guarda.
+1. Entra en el router y busca **"DNS & DDNS"** (o algo parecido). Si ves **"DNS Seguro"** (en algunos modelos se llama "Secure DNS" o "Proxy DNS"), **desactívalo** y guarda.
 2. Después cambia el DNS que reparte el router ([paso 2](#paso-2-cambiar-el-dns-que-reparte-el-router)).
 3. Haz el paso 4, **incluida la prueba de interceptación**.
-4. Si tu modelo no muestra esas opciones (en algunos solo aparecen con un usuario administrador que Vodafone no facilita), la capa del router no es posible con ese router. Opciones:
+4. Si tu modelo no muestra esas opciones (en algunos solo aparecen con un usuario administrador que Vodafone no facilita), puedes pedir al servicio técnico que desactive "DNS Seguro" (según los foros, a veces lo hacen). Si no, la capa del router no es posible con ese router. Opciones:
    - [Router propio en cascada](#si-tu-router-no-te-deja-router-propio-en-cascada) **que use DNS cifrado (DoT o DoH)** hacia CleanBrowsing. Con DNS normal, el router de Vodafone también lo interceptaría.
-   - O quedarte con las capas del PC y del móvil, comprobando en el PC que el filtro funciona (ver [`../windows/GUIA.md`](../windows/GUIA.md)).
+   - O quedarte con las capas del PC y del móvil, comprobando en el PC que el filtro funciona (ver [`../windows/GUIA.md`](../windows/GUIA.md)). El DNS privado del móvil va cifrado y no le afecta. En el PC, si es Windows 11, usa la opción `-DohWindows11` del programa de Windows (antes del paso de cuentas): cifra el DNS y el router ya no puede contestar en su lugar. En Windows 10 el DNS del PC seguirá interceptado, aunque el `hosts` y las directivas del navegador siguen funcionando.
 5. Si algún día usas el respaldo de Cloudflare: según los foros, algunos routers Sercomm de Vodafone interceptan las direcciones `1.1.1.x`. Pon `1.0.0.3` como primario.
 
 ### Orange, Jazztel y Simyo
@@ -330,7 +330,7 @@ Quédate con las capas de cada aparato: el DNS privado del móvil y la capa de W
 
 Sin estas reglas, un aparato que tenga escrito a mano otro DNS (por ejemplo, `8.8.8.8`) se salta el filtro del router. Con ellas, no. CleanBrowsing recomienda (por orden):
 
-1. **DNS normal (puerto 53, TCP y UDP):** permitir solo hacia `185.228.168.168` y `185.228.169.168` (y hacia el propio router, si reparte su dirección como DNS). Todo lo demás, **redirigirlo** a esas direcciones (DNAT) o bloquearlo. Si usas la capa de Windows, añade a la lista permitida `1.1.1.3` y `1.0.0.3`, que son su respaldo.
+1. **DNS normal (puerto 53, TCP y UDP):** permitir solo hacia `185.228.168.168` y `185.228.169.168` (y hacia el propio router, si reparte su dirección como DNS). Todo lo demás, **redirigirlo** a esas direcciones (DNAT) o bloquearlo. Si usas la capa de Windows, añade a la lista permitida `1.1.1.3` y `1.0.0.3`, que son su respaldo. Si dejaste IPv6 activado (opción B del paso 3), permite también `2a0d:2a00:1::` y `2a0d:2a00:2::` (y, con la capa de Windows, `2606:4700:4700::1113` y `2606:4700:4700::1003`).
 2. **DNS sobre TLS (puerto 853, TCP):** primero una regla que **permita** el 853 hacia `185.228.168.168` y `185.228.169.168` (y `1.1.1.3` y `1.0.0.3` si alguna vez pones el respaldo de Cloudflare en el móvil). Si dejaste IPv6 activado (opción B del paso 3), permite también `2a0d:2a00:1::` y `2a0d:2a00:2::` (y `2606:4700:4700::1113` y `2606:4700:4700::1003`). **Después**, bloquear el resto del 853.
 
 > **Atención, es importante:** el móvil del kit usa el DNS privado de CleanBrowsing, que va por el puerto 853. **Si bloqueas el 853 sin la excepción de la regla 2, el móvil se quedará sin internet en la wifi de casa.** Pon siempre la excepción **antes** del bloqueo y comprueba el móvil después.
@@ -419,12 +419,14 @@ A cambio, el router cubre algo que las otras capas no: **teles, consolas, tablet
 
 ## Lista de verificación final
 
+> Si el PC ya tiene la capa de Windows, sus `nslookup` e `ipconfig /all` miran el filtro del PC, no el del router (y `ipconfig /all` mostrará también el respaldo de Cloudflare: es normal). Comprueba el router con otro aparato, como explica el [paso 4](#paso-4-comprobar-que-funciona-obligatorio); en el PC, la prueba de interceptación sigue valiendo.
+
 - [ ] Hice capturas de la configuración original del router (sin la clave de la wifi).
 - [ ] El DNS del router es `185.228.168.168` y `185.228.169.168`.
 - [ ] IPv6 de la red local desactivado (o con los DNS IPv6 de CleanBrowsing).
 - [ ] `nslookup www.google.com` devuelve `forcesafesearch.google.com` o `216.239.38.120`.
 - [ ] `nslookup reddit.com` no devuelve una dirección normal.
-- [ ] La prueba de interceptación (`nslookup www.google.com 185.228.168.168`) devuelve `forcesafesearch`.
+- [ ] La prueba de interceptación (`nslookup www.google.com 185.228.168.168`) devuelve `forcesafesearch.google.com` o `216.239.38.120`.
 - [ ] `ipconfig /all` solo muestra los DNS de CleanBrowsing (o la dirección del router).
 - [ ] WPS, red de invitados y administración remota, apagados.
 - [ ] Contraseña de administración = llave, con la cápsula guardada en dos sitios y probada.
@@ -464,6 +466,8 @@ Si pusiste reglas del puerto 853, falta la excepción para CleanBrowsing ([ver s
 
 - CleanBrowsing: [filtros y direcciones](https://cleanbrowsing.org/filters), [configuración genérica de routers](https://cleanbrowsing.org/support/routers/generic-router-configuration), [requisitos de cortafuegos](https://cleanbrowsing.org/support/troubleshooting/firewall-dns-requirements), [IPv6 y filtrado](https://blog.cleanbrowsing.org/accounting-for-ipv6-in-your-content-filtering-strategy/), [cómo comprobar la configuración](https://cleanbrowsing.org/learn/verify-dns-configuration), [ASUS Merlin](https://cleanbrowsing.org/support/routers/asus-merlin).
 - Cloudflare 1.1.1.1 for Families: [direcciones IP](https://developers.cloudflare.com/1.1.1.1/ip-addresses/) y [configuración](https://developers.cloudflare.com/1.1.1.1/setup/).
+- Búsqueda segura de Google: [ayuda oficial de Google](https://support.google.com/websearch/answer/186669) (da `216.239.38.120` como dirección de ejemplo de `forcesafesearch.google.com` y avisa de que puede cambiar; por eso la prueba acepta el nombre o la dirección).
+- Respuesta a un dominio bloqueado: según CleanBrowsing, su filtro devuelve "el nombre no existe" (NXDOMAIN) o la dirección de una página de bloqueo ([diagnosticar el DNS](https://cleanbrowsing.org/support/troubleshooting/diagnose-dns-issues)).
 
 **Notas por operador** (foros y comunidades de usuarios; no son información oficial de los operadores):
 
@@ -475,4 +479,4 @@ Si pusiste reglas del puerto 853, falta la excepción para CleanBrowsing ([ver s
 - Router propio: [derecho a usar router neutro](https://bandaancha.eu/articulos/ministerio-obligo-vodafone-digi-10325), [política de los operadores](https://www.xatakamovil.com/conectividad/cual-politica-operadores-a-hora-cambiar-su-router-uno-neutro), [Finetwork](https://bandaancha.eu/foros/cambiar-router-finetwork-uno-neutro-1739251), [ASUS DNS Director](https://rog-forum.asus.com/t5/gaming-routers/gt-axe16000-how-to-enforce-router-s-pihole-dns-on-manually/td-p/984388).
 - WPS: [Xataka](https://www.xatakahome.com/la-red-local/que-wps-que-debes-desactivarlo-para-mejorar-seguridad-tu-red-wi-fi-casa).
 
-**Sin comprobar en una fuente oficial** (de conocimiento general; si algo no coincide, fíate de lo que veas): las direcciones típicas de los routers por operador, la respuesta exacta de `nslookup` a un dominio bloqueado, que `forcesafesearch.google.com` corresponda a `216.239.38.120`, la página `youtube.com/check_content_restrictions`, el comando que lee el DNS ofrecido por el router y qué modelos de router traen DNS cifrado.
+**Sin comprobar en una fuente oficial** (de conocimiento general; si algo no coincide, fíate de lo que veas): las direcciones típicas de los routers por operador, el texto exacto que muestra `nslookup` (cambia con el idioma de Windows), la página `youtube.com/check_content_restrictions`, el comando que lee el DNS ofrecido por el router y qué modelos de router traen DNS cifrado.

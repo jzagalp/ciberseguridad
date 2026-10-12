@@ -12,16 +12,17 @@ Está pensado para hacerlo **sin ayuda de otra persona**. Las contraseñas que c
 
 - El **PC con Windows** (10 u 11) con tu cuenta de administrador, como hasta ahora.
 - El **móvil Android** y un **cable USB de datos** (algunos cables solo cargan).
+- **Si el móvil es Xiaomi, Redmi o POCO:** tu **cuenta Xiaomi** iniciada en el móvil (y a veces una SIM con datos). La pide un permiso del paso por cable; sin ella, ese paso no funciona.
 - Acceso al **router** de casa: la pegatina con su contraseña.
 - Tu **correo** y una nube (OneDrive, Google Drive...) o un pendrive para guardar las cápsulas.
-- Unas **3 o 4 horas** en total. Puedes repartirlas en dos días: un día el router y las llaves, otro el móvil y el PC.
+- Unas **4 a 6 horas** en total, sin contar lo que tarden las copias de seguridad. Mejor en dos o tres días: por ejemplo, un día preparar y el router (con su llave), otro el móvil y otro el PC y las comprobaciones. El móvil, siempre antes que el PC.
 
 **De pago (opcional, pero recomendado):**
 
 | Qué | Para qué | Precio aproximado |
 |---|---|---|
-| **AppBlock Premium** (móvil) | Impide quitar los bloqueos del móvil y desinstalar la app hasta que acabe un temporizador | Unos 30 $/año o 90 $ para siempre |
-| **Cold Turkey Pro** (PC) | Bloquea navegadores portables, Tor y VPN que las demás capas no pueden cerrar | Unos 39–45 $, pago único |
+| **AppBlock Premium** (móvil) | Impide quitar los bloqueos del móvil y desinstalar la app hasta que acabe un temporizador (salvo con su desbloqueo de emergencia) | Unos 30 $/año o 90 $ para siempre |
+| **Cold Turkey Pro** (PC) | Bloquea programas (navegadores portables, Tor...) y mira la dirección completa de las webs, donde las demás capas no llegan | Unos 39–45 $, pago único |
 | **Router propio** | Solo si el router de tu operador no deja cambiar el DNS | Desde unos 30–60 € |
 
 Todo lo demás es gratuito: el filtro DNS **CleanBrowsing Family Filter**, la cápsula **Timevault** y los programas del kit.
@@ -47,16 +48,17 @@ Todo lo demás es gratuito: el filtro DNS **CleanBrowsing Family Filter**, la c�
 
 El orden importa: algunas capas cierran la puerta a pasos posteriores. Por ejemplo, el móvil necesita que tu cuenta del PC todavía sea administradora (para instalar el controlador USB). Sigue esta lista y ve marcando.
 
-### Paso 0. Preparar (30 minutos)
+### Paso 0. Preparar (30 minutos, más lo que tarden las copias)
 
-- [ ] **Descarga el kit en el PC.** En la página del repositorio, pulsa **Code > Download ZIP**. Haz clic derecho en el ZIP > **Extraer todo...** y extráelo en **Documentos**. No ejecutes nada desde dentro del ZIP.
+- [ ] **Descarga el kit en el PC.** En la página del repositorio, pulsa **Code > Download ZIP**. Antes de abrirlo, haz clic derecho en el ZIP > **Propiedades** y, si abajo aparece la casilla **Desbloquear**, márcala y pulsa **Aceptar** (así Windows avisará menos al abrir los programas). Después, clic derecho en el ZIP > **Extraer todo...**, cambia la ruta a **`C:\KitBloqueo`** y pulsa **Extraer**. Usa esa carpeta y no Documentos ni el Escritorio: en muchos PC esas carpetas están en OneDrive, y si un archivo se queda "solo en la nube", el programa de Windows no podrá leerlo después con la cuenta de administrador. Dentro de `C:\KitBloqueo` aparecerá una carpeta con el nombre del repositorio y, dentro de ella, **`bloqueo-adultos`**: ese es el kit, y todas las rutas de las guías (`windows\`, `android\`...) empiezan ahí. No ejecutes nada desde dentro del ZIP.
 - [ ] **Copia de seguridad del PC** (tus archivos, a OneDrive o a un disco externo) y **del móvil** (fotos, WhatsApp...). Ningún paso borra nada, pero si algún día perdieras una llave, la salida de emergencia sería restablecer el aparato.
-- [ ] **Comprueba que sabes tus contraseñas de siempre**: la de tu cuenta de Google (el móvil la pide tras un restablecimiento) y, si tienes, las de tu cuenta Samsung o Xiaomi y tu cuenta de Microsoft. Si tu PC tiene BitLocker, localiza su clave de recuperación. Los detalles están en el apartado "Antes de empezar" de cada guía.
+- [ ] **Comprueba que sabes tus contraseñas de siempre**: la de tu cuenta de Google (el móvil la pide tras un restablecimiento) y, si tienes, las de tu cuenta Samsung o Xiaomi y tu cuenta de Microsoft. En Xiaomi, deja la cuenta Xiaomi iniciada en el móvil. Si tu PC tiene BitLocker, localiza su clave de recuperación. Los detalles están en el apartado "Antes de empezar" de cada guía.
 
 ### Paso 1. Entender las llaves (15 minutos)
 
 - [ ] Lee en [`llaves/GUIA.md`](llaves/GUIA.md) los apartados **"Qué es una llave"**, **"Por qué no debes mirarla nunca"** y **"Cuántas llaves hacen falta"**.
 - [ ] Haz el apartado **"Antes de crear la primera llave"**: desactiva el historial del portapapeles y Enlace Móvil, y haz que el navegador no guarde contraseñas.
+- [ ] **Decide ya las fechas de apertura**, porque las elegirás al crear cada cápsula. **Escalónalas** para que nunca se abran todas a la vez. Por ejemplo: router a 90 días, PC a 60 y móvil a 30 (como el temporizador de AppBlock, si eliges esa opción). Apúntalo en tu nota de cápsulas.
 
 ### Paso 2. El router, sin llave todavía (30–60 minutos)
 
@@ -69,26 +71,26 @@ El orden importa: algunas capas cierran la puerta a pasos posteriores. Por ejemp
 
 - [ ] En [`llaves/GUIA.md`](llaves/GUIA.md), haz el **"Ensayo"** de Timevault con una palabra de prueba y una fecha 5 minutos en el futuro. Así compruebas que sabes usarla y que la web carga con el filtro puesto.
 
-### Paso 4. Cerrar el router con su llave (15 minutos)
+### Paso 4. Cerrar el router con su llave (20–30 minutos)
 
-- [ ] [`router/GUIA.md`](router/GUIA.md), **paso 6**: `llaves/EJECUTAR-llave.bat`, opción **1**.
+- [ ] [`router/GUIA.md`](router/GUIA.md), **paso 6**: `llaves/EJECUTAR-llave.bat`, opción **1**. Ten abierto a la vez el apartado **"Paso a paso con una llave de verdad"** de [`llaves/GUIA.md`](llaves/GUIA.md#paso-a-paso-con-una-llave-de-verdad) y síguelo punto por punto: es tu primera cápsula de verdad.
 
-### Paso 5. El móvil (1–2 horas)
+### Paso 5. El móvil (de 1 hora y media a 2 horas y media)
 
 - [ ] Sigue en [`android/GUIA.md`](android/GUIA.md) el apartado **"El recorrido recomendado, en orden"**, de principio a fin: ajustes del móvil, el script `android/EJECUTAR-movil.bat` por USB, AppBlock, el PIN de Controles parentales o de Play y el cierre.
 - [ ] Hazlo **antes** del paso 6: el script del móvil necesita el controlador USB, que puede pedir permisos de administrador del PC.
 
-### Paso 6. El PC (30–45 minutos)
+### Paso 6. El PC (45–60 minutos; algo más con Cold Turkey Pro)
 
 - [ ] Lee [`windows/GUIA.md`](windows/GUIA.md) y haz su lista **"Antes de empezar"**: desinstala Opera si lo tienes y, si vas a usar **Cold Turkey Pro**, instálalo y configúralo **ahora**, con su propia llave (`llaves/EJECUTAR-llave.bat`, opción **3**).
 - [ ] Doble clic en **`windows/EJECUTAR-bloqueo.bat`**. Al final llega el **paso de cuentas**: el programa crea el administrador `GuardianBloqueo` con una llave que no ves, la guardas en tu cápsula y tu cuenta pasa a ser estándar. Esto va lo **último** a propósito.
 - [ ] Cierra sesión y vuelve a entrar.
 
-### Paso 7. Comprobar que todo funciona (15 minutos)
+### Paso 7. Comprobar que todo funciona (20–30 minutos)
 
-- [ ] En el PC: doble clic en **`windows/EJECUTAR-comprobacion.bat`**. Todo debe salir **OK**.
+- [ ] En el PC: doble clic en **`windows/EJECUTAR-comprobacion.bat`**. Todo debe salir **OK**. Si algo sale **FALLO** o **AVISO**, mira el paso 8 de los "Pasos" de [`windows/GUIA.md`](windows/GUIA.md#pasos).
 - [ ] Repasa la **lista de verificación final** de cada guía: [móvil](android/GUIA.md#prueba-que-funciona-lista-de-verificación-final), [PC](windows/GUIA.md#lista-de-verificación-final) y [router](router/GUIA.md#lista-de-verificación-final).
-- [ ] Apunta en tu calendario la **fecha de apertura** de cada cápsula. **Escalona las fechas** para que nunca se abran todas a la vez (por ejemplo: móvil a 30 días, PC a 60 y router a 90).
+- [ ] Apunta en tu calendario la **fecha de apertura** de cada cápsula y comprueba que están **escalonadas** (lo decidiste en el paso 1).
 
 ### Paso 8. Lo que no es técnico
 
@@ -124,4 +126,4 @@ Cada guía tiene su apartado **"Cómo deshacerlo (cuando llegue la llave)"**, y 
 | [`windows/`](windows/) | Guía del PC y los programas `EJECUTAR-bloqueo.bat`, `EJECUTAR-comprobacion.bat` y `EJECUTAR-deshacer.bat` |
 | [`APOYO.md`](APOYO.md) | Plan para los momentos de impulso y recursos de ayuda en España |
 
-**Nota técnica:** los programas son scripts de PowerShell (`.ps1`) que se abren con los `.bat`. No necesitan instalar nada: usan el PowerShell que ya trae Windows. Puedes leer su código antes de ejecutarlos. Ninguno guarda las llaves en el disco.
+**Nota técnica:** los programas son scripts de PowerShell (`.ps1`) que se abren con los `.bat`. Usan el PowerShell que ya trae Windows; solo el del móvil descarga además las herramientas oficiales de Google (platform-tools) en su carpeta y puede necesitar el controlador USB del móvil. Puedes leer su código antes de ejecutarlos. Ninguno guarda las llaves en el disco.

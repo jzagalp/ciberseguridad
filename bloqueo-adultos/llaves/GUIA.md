@@ -72,7 +72,7 @@ Lo normal son **entre 3 y 5 llaves**. Esta tabla las reúne todas:
 | **Router: contraseña de administración** | Sí | `EJECUTAR-llave.bat`, opción 1 | [`../router/GUIA.md`](../router/GUIA.md), paso 6 | Botón de reset: vuelve la contraseña de la pegatina |
 | **Router del operador** (solo en el montaje con router propio en cascada): clave de su wifi y, si se puede, su administración | Sí, una para cada cosa | `EJECUTAR-llave.bat`, opción 2 (wifi) y opción 6 (administración) | [`../router/GUIA.md`](../router/GUIA.md) | Reset del router del operador |
 | **Administrador de Windows** | Sí | El propio programa de Windows (`EJECUTAR-bloqueo.bat`) | [`../windows/GUIA.md`](../windows/GUIA.md) | Restablecer o reinstalar Windows (por eso la copia de seguridad) |
-| **Programa bloqueador del PC** (por ejemplo, Cold Turkey Pro), si lo usas | Sí | `EJECUTAR-llave.bat`, opción 3 | [`../windows/GUIA.md`](../windows/GUIA.md) | Lo que diga su soporte; si no, con el administrador de Windows |
+| **Programa bloqueador del PC** (por ejemplo, Cold Turkey Pro), si lo usas | Sí | `EJECUTAR-llave.bat`, opción 3 | [`../windows/GUIA.md`](../windows/GUIA.md) | Lo que diga su soporte (no lo hemos podido comprobar); en el peor caso, restablecer Windows |
 | **PIN de Controles parentales** del móvil (Android 17; en Pixel, también Android 16) | Sí, 10 cifras | El programa del móvil (`EJECUTAR-movil.bat`, opción 2), que lo teclea por cable sin que lo veas | [`../android/GUIA.md`](../android/GUIA.md) | Restablecer el móvil de fábrica. Por eso, **dos cápsulas** |
 | **PIN de Google Play** (Android 16 o anterior) | Sí, 4 cifras | El programa del móvil, opción 2 | [`../android/GUIA.md`](../android/GUIA.md) | Borrar los datos de Play Store |
 | **AppBlock** (app bloqueadora del móvil) | Con temporizador, no. Con PIN, sí | El programa del móvil, opción 2 | [`../android/GUIA.md`](../android/GUIA.md) | Desbloqueo de emergencia de su soporte, o restablecer el móvil |
@@ -113,19 +113,20 @@ Prepara el PC una sola vez. Son cinco minutos y tapan las fugas más comunes:
 - El texto cifrado **no es secreto**: puedes guardarlo en tantos sitios como quieras. Antes de la fecha no sirve para nada.
 - Técnicamente, solo se podría abrir antes si se pusiera de acuerdo la mayoría de las organizaciones que mantienen la red drand.
 - Depende de que la red drand siga funcionando en la fecha de apertura. Lleva años en marcha, pero no es imposible que falle. Por eso guardas el cifrado en varios sitios y por eso cada capa tiene una vía de recuperación.
-- La web está en inglés. Los nombres de los botones de esta guía pueden variar un poco.
+- La web está en inglés. Tiene tres pestañas: **Text** (para cifrar), **Vulnerability report** (no la uses) y **Decrypt** (para abrir). Arriba hay un menú **Network**: déjalo en **Mainnet (quicknet)**, que es lo que viene puesto. **No hay botón de cifrar ni de descifrar**: el resultado aparece solo. Si actualizan la web, los nombres pueden cambiar un poco.
 
 ### Ensayo (la primera vez, 10 minutos)
 
 Antes de guardar una llave de verdad, haz una prueba. **Hazla con los filtros del kit ya puestos** (por ejemplo, después del router), para comprobar que la web carga con el filtro.
 
 1. Abre [https://timevault.drand.love](https://timevault.drand.love).
-2. En el cuadro de texto grande escribe `prueba`.
-3. Elige como fecha y hora de apertura **dentro de 5 minutos**.
-4. Pulsa el botón de cifrar ("Encrypt").
+2. En la pestaña **Text**, pon en **Decryption time** (fecha y hora de apertura) una hora **dentro de 5 minutos**.
+3. En el cuadro grande **Plaintext** escribe `prueba`.
+4. En uno o dos segundos aparece solo el resultado en el cuadro **Ciphertext** (si no aparece, haz clic fuera del cuadro donde escribiste).
 5. Copia el resultado (un bloque de texto largo) y pégalo en el Bloc de notas.
-6. Espera a que pase la hora. Vuelve a Timevault, cambia al modo de descifrar ("Decrypt"), pega el texto cifrado y pulsa el botón de descifrar.
-7. Debe aparecer `prueba`. Si antes de la hora te da un error, es lo esperado: todavía no se puede abrir.
+6. Espera a que pase la hora. Vuelve a Timevault, pasa a la pestaña **Decrypt** y pega el texto cifrado en su cuadro **Ciphertext**. El contenido aparece solo en el cuadro de al lado (**Plaintext**).
+7. Debe aparecer `prueba`. Si antes de la hora sale un aviso en inglés como "This message cannot be decrypted until..." (no se puede abrir hasta...), es lo esperado: todavía no se puede abrir.
+8. Fíjate bien en dónde queda cada cuadro y en la forma del cifrado (un bloque largo de muchas líneas). Con la llave de verdad lo harás con la página alejada y no podrás leer los nombres.
 
 ### Paso a paso con una llave de verdad
 
@@ -142,24 +143,24 @@ Antes de guardar una llave de verdad, haz una prueba. **Hazla con los filtros de
 **Ahora, con el programa:**
 
 6. Haz doble clic en `EJECUTAR-llave.bat` y responde a sus dos preguntas (para qué es la llave y qué tipo). Cuando diga **"Paso 1 de 3"**, el texto para la cápsula ya está copiado: una etiqueta (para qué es y cuándo se creó) y la llave.
-7. En Timevault, haz clic en el cuadro de texto grande y pega con **Ctrl+V**. No te pares a mirarlo.
-8. Elige la **fecha y hora de apertura**. El programa te sugiere fechas a 30, 60 y 90 días. Elige una hora en la que sueles estar en casa y con calma, por ejemplo por la tarde.
-9. Pulsa el botón de cifrar.
-10. Copia el **resultado cifrado**, que aparece en otro cuadro: usa su botón de copiar si lo tiene o haz clic dentro de **ese** cuadro y pulsa Ctrl+A y Ctrl+C. Cuidado de no copiar el cuadro donde pegaste.
-11. **Sitio 1, correo:** aleja también la ventana del correo (Ctrl y "-") y pega el texto cifrado en el mensaje para ti. **Comprueba que es un bloque largo de caracteres sin sentido que empieza por algo como `-----BEGIN AGE ENCRYPTED FILE-----`.** Si en cambio empieza por "Kit para bloquear contenido adulto", has copiado el cuadro equivocado: bórralo del correo sin leerlo (mira también en Borradores) y vuelve al punto 10. El programa también te avisa si, al pulsar Intro en el paso 1, el portapapeles sigue teniendo el texto sin cifrar. Asunto, por ejemplo: `Cápsula Router - abrir el 09/01/2027`. Debajo del texto cifrado, añade: `Para abrirla: https://timevault.drand.love > Decrypt > pegar este texto`. Envíalo.
+7. En Timevault, pestaña **Text**, elige **primero** la **fecha y hora de apertura** en **Decryption time**. El programa te sugiere fechas a 30, 60 y 90 días. Elige una hora en la que sueles estar en casa y con calma, por ejemplo por la tarde. Si al 25 % no ves bien el calendario, pon el tamaño normal (Ctrl + 0), elige la fecha y vuelve a alejar la página (Ctrl y "-") **antes** de pegar.
+8. Haz clic en el cuadro grande **Plaintext** y pega con **Ctrl+V**. No te pares a mirarlo.
+9. No hay botón de cifrar: en uno o dos segundos el resultado aparece solo en el cuadro **Ciphertext**. Si no aparece, haz clic fuera del cuadro donde pegaste. Si cambias la fecha después de pegar, espera un par de segundos a que el resultado se actualice.
+10. Copia el **resultado cifrado**: haz clic dentro del cuadro **Ciphertext** y pulsa Ctrl+A y Ctrl+C. Cuidado de no copiar el cuadro donde pegaste (**Plaintext**).
+11. **Sitio 1, correo:** aleja también la ventana del correo (Ctrl y "-") y pega el texto cifrado en el mensaje para ti. **Comprueba que es un bloque largo y apretado de muchas líneas, que empieza por una línea de guiones (`-----BEGIN AGE ENCRYPTED FILE-----`)**: se reconoce por la forma, sin acercarte. Si en cambio son unas pocas líneas cortas (empiezan por "Kit para bloquear contenido adulto"), has copiado el cuadro equivocado: bórralo del correo sin leerlo (mira también en Borradores) y vuelve al punto 10. El programa también te avisa si, al pulsar Intro en el paso 1, el portapapeles sigue teniendo el texto sin cifrar. Asunto, por ejemplo: `Cápsula Router - abrir el 09/01/2027`. Debajo del texto cifrado, añade: `Para abrirla: https://timevault.drand.love > Decrypt > pegar este texto`. Envíalo.
 12. **Sitio 2, archivo:** pega el texto cifrado en el Bloc de notas y guárdalo como `capsula-router-2027-01-09.txt` en tu nube (OneDrive, Google Drive...) o en un pendrive.
-13. Vuelve a la ventana del programa y pulsa **Intro**. Sigue con el paso 2 (poner la llave como contraseña) y el paso 3 (comprobar que abre). El programa vuelve a copiar la llave sola cuando hace falta, así que no importa que hayas copiado el texto cifrado entre medias.
-14. Cuando el programa diga **"Listo"**, **borra el cuadro de Timevault donde pegaste** (haz clic dentro, Ctrl+A y Supr) y después cierra la pestaña. Si no lo borras, el navegador puede guardar lo que había en él para "volver a abrir la pestaña cerrada", y con él la llave. Luego vuelve a poner el zoom normal (Ctrl + 0).
+13. **Comprueba la fecha antes de seguir:** en Timevault, pasa a la pestaña **Decrypt** y, **con la página todavía alejada**, pega el texto cifrado en su cuadro. Si el cuadro de al lado (**Plaintext**) se queda vacío, puedes acercar la página (Ctrl + 0) para leer el aviso en inglés, "This message cannot be decrypted until..." (no se puede abrir hasta...): debe tener la fecha y hora que elegiste. Vuelve a alejarla (Ctrl y "-") antes de volver a la pestaña **Text**. Si en cambio aparece texto en el cuadro de al lado (la cápsula se ha hecho con una fecha equivocada) o sale otro error: no acerques la página ni lo leas, borra el correo y el archivo, escribe **X** en el programa y empieza de nuevo. Si la fecha está bien, vuelve a la ventana del programa y pulsa **Intro**. Sigue con el paso 2 (poner la llave como contraseña) y el paso 3 (comprobar que abre). El programa vuelve a copiar la llave sola cuando hace falta, así que no importa que hayas copiado el texto cifrado entre medias.
+14. Cuando el programa diga **"Listo"**, **borra el cuadro de Timevault donde pegaste** (haz clic dentro, Ctrl+A y Supr; si ya pasaste a la pestaña **Decrypt**, ese cuadro se ha vaciado solo) y después cierra la pestaña. Si no lo borras, el navegador puede guardar lo que había en él para "volver a abrir la pestaña cerrada", y con él la llave. Luego vuelve a poner el zoom normal (Ctrl + 0).
 15. Comprueba que el correo ha llegado (o está en "Enviados") y que el archivo se abre.
 16. Apunta la fecha de apertura en tu calendario y en tu nota de cápsulas.
 
 ### Cómo se abre cuando llega la fecha
 
 1. Abre tu correo (o el archivo .txt) y copia el texto cifrado entero.
-2. Ve a [https://timevault.drand.love](https://timevault.drand.love), cambia al modo de descifrar ("Decrypt"), pega y pulsa el botón de descifrar.
-3. Aparece el texto de la cápsula. **La llave es la última línea.** Selecciónala (con tres clics seguidos sobre ella se selecciona la línea entera) y cópiala.
-4. Úsala para entrar donde toque. Las llaves que hay que teclear a mano (por ejemplo, la de Windows en la pantalla de inicio de sesión) las tendrás que escribir: ahora sí puedes verlas.
-5. Si tienes **varias cápsulas de la misma capa** (por ejemplo, porque cancelaste una vez a mitad), prueba primero la de fecha de creación más reciente (sale en la etiqueta) y, si no abre, las demás.
+2. Ve a [https://timevault.drand.love](https://timevault.drand.love), pasa a la pestaña **Decrypt** y pega el texto cifrado en su cuadro **Ciphertext**. No hay botón de descifrar.
+3. El texto de la cápsula aparece solo en el cuadro de al lado (**Plaintext**). Si sale un error, comprueba que el menú **Network** de arriba dice **Mainnet (quicknet)**. **La llave es la última línea.** Selecciónala (con tres clics seguidos sobre ella se selecciona la línea entera) y cópiala.
+4. Úsala para entrar donde toque. Las llaves que hay que teclear a mano (por ejemplo, la de Windows, en la ventana que pide usuario y contraseña de administrador) las tendrás que escribir: ahora sí puedes verlas.
+5. Si tienes **varias cápsulas de la misma capa** (por ejemplo, porque cancelaste una vez a mitad), prueba primero la de fecha de creación más reciente (sale en la etiqueta que pone el programa de llaves; si la etiqueta la escribiste tú, mira la fecha del correo) y, si no abre, las demás.
 
 Si Timevault no funciona ese día, mira [Si una llave se pierde](#si-una-llave-se-pierde).
 
@@ -187,10 +188,11 @@ Sirve para dos cosas: te recuerda el día de apertura y guarda una copia del cif
 
 Los programas de **Windows** y del **móvil** crean sus propias llaves y las copian sin mostrarlas. Solo copian la llave, sin etiqueta, así que en Timevault:
 
-1. Haz clic en el cuadro de texto y **escribe tú la etiqueta** en la primera línea, por ejemplo `Windows - administrador GuardianBloqueo` o `Móvil - PIN de Controles parentales`, y pulsa Intro.
-2. Pega la llave con Ctrl+V en la línea de abajo.
-3. Sigue desde el punto 8 del paso a paso (fecha, cifrar y guardar el cifrado en dos sitios). Al terminar, borra el cuadro donde pegaste antes de cerrar la pestaña (punto 14).
-4. Ojo: cuando copies el texto cifrado, el portapapeles ya no tendrá la llave. Si el programa necesita que la pegues en otro sitio después, búscale la opción de volver a copiarla; si no la tiene, **pega la llave donde haga falta antes de copiar el texto cifrado** (deja Timevault abierto con el cifrado hecho mientras tanto).
+1. **Antes de abrir ese programa**, prepara lo mismo que en los puntos 1 a 4 del paso a paso: Timevault abierto y alejado al 25 %, el mensaje de correo para ti y el Bloc de notas. Después, en la pestaña **Text**, elige primero la fecha y hora de apertura (punto 7 del paso a paso).
+2. Haz clic en el cuadro **Plaintext** y **escribe tú la etiqueta** en la primera línea, por ejemplo `Windows - administrador GuardianBloqueo` o `Móvil - PIN de Controles parentales`, y pulsa Intro.
+3. Pega la llave con Ctrl+V en la línea de abajo.
+4. Sigue desde el punto 9 del paso a paso (el cifrado, guardarlo en dos sitios y comprobar la fecha). Donde el paso a paso dice pulsar **Intro** o escribir **X** en el programa, en el de Windows escribe `PEGADA` o `CANCELAR`, y en el del móvil, `LISTO` o `CANCELAR`. Al terminar, borra el cuadro donde pegaste antes de cerrar la pestaña (punto 14).
+5. Ojo: cuando copies el texto cifrado, el portapapeles ya no tendrá la llave. Si el programa necesita que la pegues en otro sitio después, búscale la opción de volver a copiarla; si no la tiene, **pega la llave donde haga falta antes de copiar el texto cifrado** (deja Timevault abierto con el cifrado hecho mientras tanto).
 
 **PIN de Controles parentales del móvil:** si se pierde, la única salida es restablecer el móvil de fábrica. Por eso la guía del móvil pide **dos cápsulas**. Haz dos cápsulas Timevault independientes: la segunda con la fecha **una semana más tarde** y guardada en sitios distintos (otro correo, otra nube). Si la primera falla, la segunda llega a los pocos días.
 
@@ -321,7 +323,7 @@ Para deshacer el bloqueo de una capa:
 |---|---|
 | Router | Botón de reset (10 a 30 segundos): vuelve la contraseña de la pegatina. Ver [`../router/GUIA.md`](../router/GUIA.md) |
 | Administrador de Windows | Restablecer o reinstalar Windows, con tu copia de seguridad y, si el disco está cifrado, la clave de recuperación de BitLocker. Ver [`../windows/GUIA.md`](../windows/GUIA.md) |
-| Programa bloqueador del PC | Su soporte o la guía de Windows |
+| Programa bloqueador del PC | Su soporte; en el peor caso, restablecer Windows (ver [`../windows/GUIA.md`](../windows/GUIA.md)) |
 | PIN de Controles parentales del móvil | Restablecer el móvil de fábrica (te pedirá tu cuenta de Google de siempre). Ver [`../android/GUIA.md`](../android/GUIA.md) |
 | PIN de Google Play | Borrar los datos de la app Play Store |
 | AppBlock con PIN | Desbloqueo de emergencia de su soporte, o restablecer el móvil |
@@ -362,7 +364,7 @@ Escribe **F** en el paso 2 del programa y elige 16 caracteres, "con un símbolo"
 Escribe **P** en el programa y sigue sus consejos. Si al guardarla el campo tenía menos puntos de los debidos, el sitio la cortó: pega la llave en el inicio de sesión y pulsa Retroceso hasta dejar los mismos puntos que había. Si no hay manera, usa la vía de recuperación de esa capa ([Si una llave se pierde](#si-una-llave-se-pierde)).
 
 **¿Y si con los filtros puestos Timevault no carga?**
-Por eso el ensayo se hace con los filtros ya puestos. Si no carga, no guardes llaves de verdad en ella hasta resolverlo: busca ayuda técnica para usar `tle`, o usa de forma provisional otra cápsula sabiendo que es más débil.
+Por eso el ensayo se hace con los filtros ya puestos. La web necesita llegar a `timevault.drand.love` y a `api.drand.sh` (de donde saca los datos públicos de la red drand): si no aparece el cifrado o sale un error, es que algo bloquea uno de los dos. Si no carga, no guardes llaves de verdad en ella hasta resolverlo: busca ayuda técnica para usar `tle`, o usa de forma provisional otra cápsula sabiendo que es más débil.
 
 **¿El programa guarda algo en el PC?**
 No. La llave solo vive en la memoria mientras el programa está abierto. No hay archivos ni registros. Lo único que toca son tres ajustes del portapapeles, que deja como estaban.

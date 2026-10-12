@@ -1,4 +1,4 @@
-<#
+﻿<#
     deshacer-pc.ps1  -  Revierte la capa Windows del kit de bloqueo.
 
     Se usa cuando llega la LLAVE desde tu capsula del tiempo. Lo mas sencillo:

@@ -1,0 +1,4 @@
+# Los scripts de Windows se guardan tal cual: UTF-8 con BOM (necesario para
+# Windows PowerShell 5.1) y finales de linea CRLF. Sin conversion de git.
+*.ps1 -text diff
+*.bat -text diff
